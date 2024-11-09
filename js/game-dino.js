@@ -13,14 +13,27 @@ let isJumping = false
 
 highScoreElement.textContent = highScore
 
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        loadingScreen.style.opacity = '0'
-        setTimeout(() => {
-            loadingScreen.style.display = 'none'
-        }, 500)
-    }, 1000)
-})
+// Loading screen handler
+document.addEventListener('DOMContentLoaded', function() {
+    const loadingScreen = document.getElementById('load');
+    const container = document.querySelector('.container');
+    
+    // Sembunyikan container saat loading
+    container.style.display = 'none';
+    
+    // Tunggu semua aset dimuat
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            loadingScreen.classList.add('hide-loading');
+            container.style.display = 'flex';
+            
+            // Hapus loading screen dari DOM setelah animasi selesai
+            setTimeout(() => {
+                loadingScreen.remove();
+            }, 500);
+        }, 2000);
+    });
+});
 
 function startGame() {
     if (isPlaying) return
