@@ -1,0 +1,222 @@
+* {
+    margin: 0;                /* Menghapus margin bawaan */
+    padding: 0;               /* Menghapus padding bawaan */
+    box-sizing: border-box;   /* Ukuran elemen termasuk padding dan border */
+}
+
+body {
+    width: 100%;             /* Lebar penuh */
+    height: 100vh;           /* Tinggi sesuai viewport */
+    overflow: hidden;        /* Sembunyikan scrollbar */
+    font-size: 50px;         /* Ukuran font dasar */
+    display: flex;           /* Menggunakan flexbox */
+    justify-content: center; /* Pusatkan horizontal */
+    align-items: center;     /* Pusatkan vertikal */
+    font-family: Arial, Helvetica, sans-serif;  /* Jenis font */
+    color: #FF0000;         /* Warna teks merah */
+    background: linear-gradient(#87CEEB, #E0F6FF);  /* Latar belakang gradien biru */
+    min-height: 100vh;      /* Tinggi minimal viewport */
+}
+
+/* Loading Screen Styles */
+#load {
+    position: fixed;        /* Posisi tetap */
+    width: 600px;          /* Lebar loading */
+    height: 36px;          /* Tinggi loading */
+    left: 50%;             /* Posisi dari kiri */
+    top: 40%;              /* Posisi dari atas */
+    margin-left: -300px;   /* Geser ke kiri setengah lebar */
+    overflow: visible;     /* Tampilkan konten yang overflow */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;     /* Cegah seleksi teks */
+    cursor: default;       /* Kursor default */
+    z-index: 1000;        /* Tampilkan di atas konten lain */
+    display: flex;         /* Gunakan flexbox */
+    justify-content: center; /* Pusatkan horizontal */
+    align-items: center;   /* Pusatkan vertikal */
+}
+
+#load div {
+    position: absolute;
+    width: 20px;
+    height: 36px;
+    opacity: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    animation: move 2s linear infinite;
+    -o-animation: move 2s linear infinite;
+    -moz-animation: move 2s linear infinite;
+    -webkit-animation: move 2s linear infinite;
+    transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    color: #35C4F0;
+}
+
+#load div:nth-child(2) { animation-delay: 0.2s; }
+#load div:nth-child(3) { animation-delay: 0.4s; }
+#load div:nth-child(4) { animation-delay: 0.6s; }
+#load div:nth-child(5) { animation-delay: 0.8s; }
+#load div:nth-child(6) { animation-delay: 1s; }
+#load div:nth-child(7) { animation-delay: 1.2s; }
+
+@keyframes move {
+    0% {
+        left: 0;
+        opacity: 0;
+    }
+    35% {
+        left: 41%; 
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    65% {
+        left: 59%; 
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        left: 100%; 
+        transform: rotate(-180deg);
+        opacity: 0;
+    }
+}
+
+/* Tambahkan class untuk animasi fade out */
+.hide-loading {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-out;
+}
+
+/* Game Container Styles */
+.container {
+    width: 100%;          /* Lebar penuh */
+    height: 100%;         /* Tinggi penuh */
+    display: none;        /* Sembunyikan awalnya */
+    align-items: center;  /* Pusatkan vertikal */
+    background-image: url('../other/clouds.png');  /* Gambar awan */
+    background-repeat: repeat-x;    /* Ulangi horizontal */
+    background-position: 0 50px;    /* Posisi background */
+    background-size: auto 100px;    /* Ukuran background */
+    animation: moveClouds 20s linear infinite;  /* Animasi awan */
+}
+
+.card {
+    width: 100%;
+    border-bottom: none;
+    position: relative;
+    height: 200px;
+}
+
+.card button {
+    padding: 12px 24px;
+    font-size: 20px;
+    border: none;
+    border-radius: 25px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: absolute;
+    left: 50%;
+    bottom: -50px;
+    transform: translateX(-50%);
+}
+
+.card button:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    background: #45a049;
+}
+
+.card button:active {
+    transform: translateX(-50%) translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.dino {
+    width: 80px;          /* Lebar dino */
+    height: 80px;         /* Tinggi dino */
+    position: absolute;   /* Posisi absolut */
+    left: 20%;           /* Jarak dari kiri */
+    bottom: 20px;        /* Jarak dari bawah */
+    transition: .4s linear; /* Transisi halus */
+}
+
+.kaktus {
+    width: 80px;         /* Lebar kaktus */
+    height: 80px;        /* Tinggi kaktus */
+    position: absolute;  /* Posisi absolut */
+    right: 30%;         /* Jarak dari kanan */
+    bottom: 20px;       /* Jarak dari bawah */
+    animation: run 3s linear infinite;  /* Animasi lari */
+    animation-play-state: paused;    /* Animasi pause awalnya */
+}
+
+@keyframes dino {
+    0% { right: 0%; }
+    100% { right: 20%; }
+}
+
+@keyframes run {
+    0% { right: -10%; }
+    100% { right: 100%; }
+}
+
+@keyframes moveClouds {
+    from { background-position: 0 50px; }
+    to { background-position: 100% 50px; }
+}
+
+.score-container {
+    position: absolute;  /* Posisi absolut */
+    top: 20px;          /* Jarak dari atas */
+    right: 20px;        /* Jarak dari kanan */
+    font-size: 16px;    /* Ukuran font */
+    font-family: 'Press Start 2P', cursive;  /* Font game */
+    color: #333;        /* Warna teks */
+    z-index: 2;         /* Tampilkan di atas */
+}
+
+.score {
+    margin-bottom: 10px;
+}
+
+.ground {
+    position: absolute;  /* Posisi absolut */
+    bottom: 0;          /* Letak di bawah */
+    left: 0;            /* Letak di kiri */
+    width: 100%;        /* Lebar penuh */
+    height: 20px;       /* Tinggi ground */
+    background: repeating-linear-gradient(    /* Pola bergaris */
+        45deg,
+        #FFFFFF,
+        #FFFFFF 10px,
+        #E0E0E0 10px,
+        #E0E0E0 20px
+    );
+    z-index: -1;        /* Tampilkan di belakang */
+}
+@media (max-width: 768px) {    /* Responsive untuk mobile */
+    .container {
+        background-size: auto 80px;  /* Ukuran background lebih kecil */
+    }
+    
+    .ground {
+        height: 15px;    /* Ground lebih tipis */
+    }
+    
+    .dino, .kaktus {
+        width: 60px;     /* Karakter lebih kecil */
+        height: 60px;
+        bottom: 15px;
+    }
+    
+    .score-container {
+        font-size: 12px; /* Font skor lebih kecil */
+    }
+}

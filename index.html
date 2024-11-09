@@ -1,0 +1,37 @@
+<!DOCTYPE html>                                                   <!-- Deklarasi tipe dokumen HTML -->
+<html lang="en">                                                 <!-- Tag pembuka HTML dengan bahasa Inggris -->
+<head>                                                          <!-- Bagian head untuk metadata -->
+    <meta charset="UTF-8">                                      <!-- Pengaturan encoding karakter UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Pengaturan viewport untuk responsif -->
+    <link rel="stylesheet" href="css/game-dino.css">           <!-- Menghubungkan file CSS -->
+    <title>rawr</title>                                        <!-- Judul halaman web -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- Import font -->
+</head>
+<body>                                                         <!-- Bagian body untuk konten -->
+    <div id="load">                                           <!-- Container loading screen -->
+        <div>G</div>                                         <!-- Huruf animasi loading -->
+        <div>N</div>                                         <!-- Huruf animasi loading -->
+        <div>I</div>                                         <!-- Huruf animasi loading -->
+        <div>D</div>                                         <!-- Huruf animasi loading -->
+        <div>A</div>                                         <!-- Huruf animasi loading -->
+        <div>O</div>                                         <!-- Huruf animasi loading -->
+        <div>L</div>                                         <!-- Huruf animasi loading -->
+    </div>
+
+    <div class="container">                                   <!-- Container utama game -->
+        <div class="card">                                   <!-- Card untuk area permainan -->
+            <img src="other/dino.svg" class="dino">          <!-- Gambar karakter dino -->
+            <img src="other/cactus.svg" class="kaktus">      <!-- Gambar obstacle kaktus -->
+            <button>Start</button>                           <!-- Tombol mulai permainan -->
+            <div class="ground"></div>                       <!-- Elemen tanah/ground -->
+        </div>
+    </div>
+
+    <div class="score-container">                            <!-- Container untuk skor -->
+        <div class="score">Score: <span id="score">0</span></div>           <!-- Tampilan skor saat ini -->
+        <div class="high-score">High Score: <span id="highScore">0</span></div> <!-- Tampilan skor tertinggi -->
+    </div>
+
+    <script src="js/game-dino.js"></script>                 <!-- Menghubungkan file JavaScript -->
+</body>
+</html>
