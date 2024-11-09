@@ -18,10 +18,84 @@ body {
     min-height: 100vh;
 }
 
+/* Loading Screen Styles */
+#load {
+    position: fixed;
+    width: 600px;
+    height: 36px;
+    left: 50%;
+    top: 40%;
+    margin-left: -300px;
+    overflow: visible;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#load div {
+    position: absolute;
+    width: 20px;
+    height: 36px;
+    opacity: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    animation: move 2s linear infinite;
+    -o-animation: move 2s linear infinite;
+    -moz-animation: move 2s linear infinite;
+    -webkit-animation: move 2s linear infinite;
+    transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    color: #35C4F0;
+}
+
+#load div:nth-child(2) { animation-delay: 0.2s; }
+#load div:nth-child(3) { animation-delay: 0.4s; }
+#load div:nth-child(4) { animation-delay: 0.6s; }
+#load div:nth-child(5) { animation-delay: 0.8s; }
+#load div:nth-child(6) { animation-delay: 1s; }
+#load div:nth-child(7) { animation-delay: 1.2s; }
+
+@keyframes move {
+    0% {
+        left: 0;
+        opacity: 0;
+    }
+    35% {
+        left: 41%; 
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    65% {
+        left: 59%; 
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        left: 100%; 
+        transform: rotate(-180deg);
+        opacity: 0;
+    }
+}
+
+/* Tambahkan class untuk animasi fade out */
+.hide-loading {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-out;
+}
+
+/* Game Container Styles */
 .container {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     align-items: center;
     background-image: url('../other/clouds.png');
     background-repeat: repeat-x;
@@ -84,31 +158,18 @@ body {
 }
 
 @keyframes dino {
-    0% {
-        right: 0%;
-    }
-    100% {
-        right: 20%;
-    }
+    0% { right: 0%; }
+    100% { right: 20%; }
 }
 
 @keyframes run {
-    0% {
-        right: -10%;
-    }
-    100% {
-        right: 100%;
-    }
+    0% { right: -10%; }
+    100% { right: 100%; }
 }
 
-/* Animasi awan bergerak */
 @keyframes moveClouds {
-    from { 
-        background-position: 0 50px;
-    }
-    to { 
-        background-position: 100% 50px;
-    }
+    from { background-position: 0 50px; }
+    to { background-position: 100% 50px; }
 }
 
 .score-container {
@@ -139,33 +200,6 @@ body {
         #E0E0E0 20px
     );
     z-index: -1;
-}
-
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:linear-gradient(#87CEEB, #E0F6FF);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.loading-animation {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 @media (max-width: 768px) {
